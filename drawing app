@@ -20,6 +20,7 @@ var speedC = 0.25
 var RedButton;
 var lines = [];
 var clearBut;
+var Grass;
 
 //--------------------------------------
 function preload() {
@@ -54,7 +55,9 @@ noStroke();
   saveBut = createButton('Save Drawing').parent(options)
 
      fill(230,50,50)
-  textSize(18)
+  
+  textSize(40)
+  textFont('French script MT')
   text('Create Your Own Princess!', 10, 30)
     image(img, 200, 70, 230, 300);
   image(imgs, 505, 300, 100, 100);
@@ -68,6 +71,7 @@ noStroke();
   image(diamond, 100, 50, 20, 40);
  
    fill(0);
+  textFont('French script MT')
     text('Draw your Castle!', 530, 40);
      textSize(18);
           fill(70, 170, 255);
@@ -75,7 +79,7 @@ noStroke();
       image(castle, 550, 50, 400, 300);
 
 
-  
+    textFont('Arial')
   text('Press 1', 10, 200);
       fill(70, 170, 255);//front page
   rect(0,0,1000, 300);
@@ -85,9 +89,11 @@ noStroke();
   image(imgs,500, 300,500,500)
     fill(255);
   textSize(80);
+    textFont('French script MT')
   text('Princess Drawing',200, 450);
-   textSize(30)
-   text('Press ENTER to continue',360, 530);
+   textSize(20)
+  textFont('Arial')
+   text('Press ENTER to continue',300, 500);
  
   draw();
 }
@@ -143,7 +149,70 @@ noStroke();
 noStroke();
       
  //---------------------------------------------------GRASS
-Grass();
+image(imgs, 500, 500, 100, 100);
+   image(imgs, 600, 500, 100, 100);
+   image(imgs, 700, 500, 100, 100);
+   image(imgs, 800, 500, 100, 100);
+   image(imgs, 900, 500, 100, 100);
+   
+   image(imgs, 500, 600, 100, 100);
+   image(imgs, 600, 600, 100, 100);
+   image(imgs, 700, 600, 100, 100);
+   image(imgs, 800, 600, 100, 100);
+   image(imgs, 900, 600, 100, 100);
+        
+   image(imgs, 0, 600, 100, 100);
+   image(imgs, 100, 600, 100, 100);
+   image(imgs, 200, 600, 100, 100);
+   image(imgs, 300, 600, 100, 100);
+   image(imgs, 400, 600, 100, 100);
+   
+   image(imgs, 0, 500, 100, 100);
+   image(imgs, 100, 500, 100, 100);
+   image(imgs, 200, 500, 100, 100);
+   image(imgs, 300, 500, 100, 100);
+   image(imgs, 400, 500, 100, 100);
+      
+     image(imgs, 0, 700, 100, 100);
+   image(imgs, 100, 700, 100, 100);
+   image(imgs, 200, 700, 100, 100);
+   image(imgs, 300, 700, 100, 100);
+   image(imgs, 400, 700, 100, 100);
+      
+           image(imgs, 500, 700, 100, 100);
+   image(imgs, 600, 700, 100, 100);
+   image(imgs, 700, 700, 100, 100);
+   image(imgs, 800, 700, 100, 100);
+   image(imgs, 900, 700, 100, 100);
+     image(imgs, 1000, 700, 100, 100);
+       image(imgs, 1100, 700, 100, 100); 
+      image(imgs, 1000, 600, 100, 100);
+   image(imgs, 1100, 600, 100, 100);
+   image(imgs, 1200, 600, 100, 100);
+         image(imgs, 1100, 500, 100, 100);
+       image(imgs, 1000, 500, 100, 100);
+           image(imgs, 0, 800, 100, 100);
+   image(imgs, 100, 800, 100, 100);
+   image(imgs, 200, 800, 100, 100);
+   image(imgs, 300, 800, 100, 100);
+   image(imgs, 400, 800, 100, 100);
+   image(imgs, 0, 800, 100, 100);
+   image(imgs, 100, 800, 100, 100);
+   image(imgs, 200, 800, 100, 100);
+  
+   image(imgs, 400, 800, 100, 100);
+    image(imgs,0,900,100,100);
+      image(imgs, 100, 900, 100, 100);
+   image(imgs, 200, 900, 100, 100);
+   image(imgs, 300, 900, 100, 100);
+   image(imgs, 400, 900, 100, 100);
+    image(imgs,500,800,100,100)
+    image(imgs,700,800,100,100)
+    image(imgs,800,800,100,100)
+    image(imgs,900,800,100,100)
+    image(imgs,1000,800,100,100)
+    image(imgs,1100,800,100,100)
+      image(imgs,600,800,100,100)
 //---------------------------------------------------------
       fill(245);//sidebar
       noStroke();
@@ -171,10 +240,10 @@ Grass();
   textSize(14)
   text('Brush Thickness', 55, 970)
   text('Press ENTER to clear')
-     pencolor.position(820,890);
-  pencolor.size(100,50);
+     pencolor.position(350,920);
+  pencolor.size(100,40);
    textSize(14)
-    text('Pen Colour', 550, 950)   
+    text('Pen Colour', 350, 980)   
  
 
   //-------------------------------------------- TEXT
@@ -184,7 +253,6 @@ Grass();
         text('Create Your Own Princess!', 10, 290)
     text('Draw her Castle!', 530, 290);
     
-// text('Draw your own bedroom!', 10, 550);
  }
 
 }
@@ -273,7 +341,7 @@ image(cloud, cloudZ, 50, 75, 34)
  
       
 function Update() {
-    cloudX += speedX;
+    cloudX += speedX; // increments the clouds to move
   cloudY += speedY;
   cloudZ += speedZ;
   cloudA += speedA;
@@ -281,10 +349,10 @@ function Update() {
   cloudC += speedC;
   
   
-  if (cloudB> 1200) {
+  if (cloudB> 1200) { // if reached the end of X avis revert
     speedB += -0.5;
   }
-  if (cloudB < 0) {
+  if (cloudB < 0) { // if les than start of X axis increment
     speedB += 0.5
   }
    if (cloudA > 800) {
@@ -386,5 +454,6 @@ function Update() {
     image(imgs,900,800,100,100)
     image(imgs,1000,800,100,100)
     image(imgs,1100,800,100,100)
+     image(imgs,600,900,100,100)
  
-  } 
+  } }
