@@ -1,0 +1,390 @@
+var colour;
+let slider; 
+var redx = 550;
+var redy = 890;
+var d = 100;
+
+var cloudY = 200;
+var cloudZ = 400;
+var cloudX = 300;
+var cloudA = 700;
+var cloudB = 550;
+var cloudC = 50;
+
+var speedX = 0.3;
+var speedY = 0.24;
+var speedZ = 0.225;
+var speedA = 0.299;
+var speedB = 0.24;
+var speedC = 0.25
+var RedButton;
+var lines = [];
+var clearBut;
+
+//--------------------------------------
+function preload() {
+ img = loadImage('princess.png');
+ imgs = loadImage('download.jpg');
+ cloud = loadImage('cloud.png')
+  castle = loadImage('castle.png') 
+  pinkDress = loadImage('pink dress.png')
+  blueDress = loadImage('bluedress.png')
+  diamond = loadImage('diamond.png')
+  brush = loadImage('brush.png')
+}
+
+//--------------------------------------
+function setup() {
+  
+createCanvas(1200,1000);
+background(255);
+slider = createSlider(1,20,10);
+noStroke();
+
+  
+  
+  var options = createDiv().style('display: flex')
+  var optionvalues = createDiv().parent(options)
+  pencolor = createColorPicker('#ffffff').parent(optionvalues);
+  pencolor.position(720,890);
+  pencolor.size(100,50);
+
+  clearBut = createButton('Back').parent(options)
+ 
+  saveBut = createButton('Save Drawing').parent(options)
+
+     fill(230,50,50)
+  textSize(18)
+  text('Create Your Own Princess!', 10, 30)
+    image(img, 200, 70, 230, 300);
+  image(imgs, 505, 300, 100, 100);
+   image(imgs, 600, 300, 100, 100);
+   image(imgs, 700, 300, 100, 100);
+   image(imgs, 800, 300, 100, 100);
+   image(imgs, 900, 300, 100, 100);
+  
+  image(blueDress,80, 50, 20, 40);
+  image(pinkDress, 10, 50, 20, 40)
+  image(diamond, 100, 50, 20, 40);
+ 
+   fill(0);
+    text('Draw your Castle!', 530, 40);
+     textSize(18);
+          fill(70, 170, 255);
+  rect(505, 0, 495, 300);
+      image(castle, 550, 50, 400, 300);
+
+
+  
+  text('Press 1', 10, 200);
+      fill(70, 170, 255);//front page
+  rect(0,0,1000, 300);
+        fill(70, 170, 255);//front page
+  rect(0,300,1000, 300);
+  image(imgs, 0, 300, 500, 500) //grass
+  image(imgs,500, 300,500,500)
+    fill(255);
+  textSize(80);
+  text('Princess Drawing',200, 450);
+   textSize(30)
+   text('Press ENTER to continue',360, 530);
+ 
+  draw();
+}
+class MyLine {
+  constructor(pencolor) {
+    this.px = pmouseX;
+    this.py = pmouseY;
+    this.x = mouseX;
+    this.y = mouseY;
+    this.pencolor = pencolor;
+  
+  }
+  show(){
+    stroke(this.pencolor)
+    strokeWeight(slider.value())
+    line(this.px,this.py,this.x,this.y)
+  }
+}
+  
+function keyTyped(){
+ 
+  if (key === '1') {
+    image(pinkDress, 115, 395, 310, 410)
+  }
+    
+  if (key === '2')  {
+    image(blueDress,115, 395, 310, 410)
+  }
+  
+  if (key === '3') {
+    image(diamond, mouseX, mouseY, 10, 30)
+  }
+  
+}
+
+  //===================================================
+function keyPressed() {
+
+  if (keyCode === ENTER) {
+
+  clear();
+    lines = []
+      createCanvas(1200,1000);
+    background(255);
+ clearBut.position(0,300);
+   saveBut.position(50,300)
+    
+noStroke();
+       fill(70,170,255);
+      rect(0,100, 1200, 200)
+              fill(70, 170, 255);//front page
+  rect(0,300,1200, 300);//skynonani
+noStroke();
+      
+ //---------------------------------------------------GRASS
+Grass();
+//---------------------------------------------------------
+      fill(245);//sidebar
+      noStroke();
+      rect(0,335,65,300)
+        image(pinkDress, 10, 350, 40, 60);//sidebar
+      image(diamond,20,550, 20,40)
+       image(blueDress,10, 450, 40, 60);
+       image(img, 120, 250, 300, 550); // PRINCESS
+         fill(0);
+      noStroke();
+      textSize(12);
+        text('Press `1`', 10, 430 )
+      text('Press `2`', 10, 530)
+      text('Press `3`', 10,600)
+  // ---------------------------------------bottombar
+  fill(0);
+  noStroke();
+  fill(200,170,170);
+  rect(0,900, 1200, 200)  
+  noStroke();
+  fill(230,50,50)
+  textSize(18)
+  slider.position(50, 930);
+  fill(0)
+  textSize(14)
+  text('Brush Thickness', 55, 970)
+  text('Press ENTER to clear')
+     pencolor.position(820,890);
+  pencolor.size(100,50);
+   textSize(14)
+    text('Pen Colour', 550, 950)   
+ 
+
+  //-------------------------------------------- TEXT
+   fill(0);
+     image(castle, 580, 300, 500, 400);
+       textSize(18);
+        text('Create Your Own Princess!', 10, 290)
+    text('Draw her Castle!', 530, 290);
+    
+// text('Draw your own bedroom!', 10, 550);
+ }
+
+}
+
+function draw() { 
+   saveBut.mousePressed(function(){save('My Drawing.png')})
+ 
+   clearBut.mousePressed(function() {
+     clear();
+    lines = []
+ createCanvas(1200,1000);
+background(255);
+
+slider = createSlider(1,20,10);
+
+
+  
+  
+  var options = createDiv().style('display: flex')
+  var optionvalues = createDiv().parent(options)
+
+  pencolor.position(150,930);
+  pencolor.size(100,50);
+  
+  noStroke();
+
+     fill(230,50,50)
+  textSize(18)
+  text('Create Your Own Princess!', 10, 30)
+    image(img, 200, 70, 230, 300);
+  image(imgs, 505, 300, 100, 100);
+   image(imgs, 600, 300, 100, 100);
+   image(imgs, 700, 300, 100, 100);
+   image(imgs, 800, 300, 100, 100);
+   image(imgs, 900, 300, 100, 100);
+  
+  image(blueDress,80, 50, 20, 40);
+  image(pinkDress, 10, 50, 20, 40)
+  image(diamond, 100, 50, 20, 40);
+ 
+   fill(0);
+    text('Draw your Castle!', 530, 40);
+     textSize(18);
+          fill(70, 170, 255);
+  rect(505, 0, 495, 300);
+      image(castle, 550, 50, 400, 300);
+
+
+  
+  text('Press 1', 10, 200);
+      fill(70, 170, 255);//front page
+  rect(0,0,1000, 300);
+        fill(70, 170, 255);//front page
+  rect(0,300,1000, 300);
+  image(imgs, 0, 300, 500, 500) //grass
+  image(imgs,500, 300,500,500)
+    fill(255);
+  textSize(80);
+  text('Princess Drawing',200, 450);
+   textSize(30)
+   text('Press ENTER to continue',360, 530);
+ 
+  draw();
+     
+  })
+  if (mouseIsPressed) {
+  strokeWeight(slider.value());
+    var line = new MyLine(pencolor.value())
+    lines.push(line)
+  }
+  for (var line of lines) {
+    line.show()
+  }
+
+      noStroke();
+Update();
+      fill(70, 170, 255);//sky
+ rect(0,0,1200, 250);
+       image(cloud, cloudX, 70, 50, 25);
+image(cloud, cloudZ, 50, 75, 34)
+  image(cloud, cloudY, 20, 100, 50);
+   image(cloud, cloudB, 90, 95, 45)
+  image(cloud, cloudA, 120, 150, 70)
+  image(cloud, cloudC, 120, 150, 70)
+   
+ 
+      
+function Update() {
+    cloudX += speedX;
+  cloudY += speedY;
+  cloudZ += speedZ;
+  cloudA += speedA;
+  cloudB += speedB;
+  cloudC += speedC;
+  
+  
+  if (cloudB> 1200) {
+    speedB += -0.5;
+  }
+  if (cloudB < 0) {
+    speedB += 0.5
+  }
+   if (cloudA > 800) {
+    speedA += -0.5;
+  }
+  if (cloudA < 0) {
+    speedA += 0.5
+  }
+  if (cloudZ > 1200) {
+    speedZ += -0.5;
+  }
+  if (cloudZ < 0) {
+    speedZ += 0.5
+  }
+  if (cloudX > 1200) {
+    speedX += -0.5;
+  }
+  if (cloudX < 0) {
+    speedX += 0.5
+  }
+  if (cloudY > 1200) {
+   speedY += -0.5;
+  }
+    if (cloudY < 0) {
+    speedY += 0.5
+  }
+    if (cloudC > 1200) {
+   speedC += -0.5;
+  }
+    if (cloudC < 0) {
+    speedC += 0.5
+  }
+}
+  
+
+//----------------------------
+  function Grass(){
+    draw();
+   image(imgs, 500, 500, 100, 100);
+   image(imgs, 600, 500, 100, 100);
+   image(imgs, 700, 500, 100, 100);
+   image(imgs, 800, 500, 100, 100);
+   image(imgs, 900, 500, 100, 100);
+   
+   image(imgs, 500, 600, 100, 100);
+   image(imgs, 600, 600, 100, 100);
+   image(imgs, 700, 600, 100, 100);
+   image(imgs, 800, 600, 100, 100);
+   image(imgs, 900, 600, 100, 100);
+        
+   image(imgs, 0, 600, 100, 100);
+   image(imgs, 100, 600, 100, 100);
+   image(imgs, 200, 600, 100, 100);
+   image(imgs, 300, 600, 100, 100);
+   image(imgs, 400, 600, 100, 100);
+   
+   image(imgs, 0, 500, 100, 100);
+   image(imgs, 100, 500, 100, 100);
+   image(imgs, 200, 500, 100, 100);
+   image(imgs, 300, 500, 100, 100);
+   image(imgs, 400, 500, 100, 100);
+      
+     image(imgs, 0, 700, 100, 100);
+   image(imgs, 100, 700, 100, 100);
+   image(imgs, 200, 700, 100, 100);
+   image(imgs, 300, 700, 100, 100);
+   image(imgs, 400, 700, 100, 100);
+      
+           image(imgs, 500, 700, 100, 100);
+   image(imgs, 600, 700, 100, 100);
+   image(imgs, 700, 700, 100, 100);
+   image(imgs, 800, 700, 100, 100);
+   image(imgs, 900, 700, 100, 100);
+     image(imgs, 1000, 700, 100, 100);
+       image(imgs, 1100, 700, 100, 100); 
+      image(imgs, 1000, 600, 100, 100);
+   image(imgs, 1100, 600, 100, 100);
+   image(imgs, 1200, 600, 100, 100);
+         image(imgs, 1100, 500, 100, 100);
+       image(imgs, 1000, 500, 100, 100);
+           image(imgs, 0, 800, 100, 100);
+   image(imgs, 100, 800, 100, 100);
+   image(imgs, 200, 800, 100, 100);
+   image(imgs, 300, 800, 100, 100);
+   image(imgs, 400, 800, 100, 100);
+   image(imgs, 0, 800, 100, 100);
+   image(imgs, 100, 800, 100, 100);
+   image(imgs, 200, 800, 100, 100);
+  
+   image(imgs, 400, 800, 100, 100);
+    image(imgs,0,900,100,100);
+      image(imgs, 100, 900, 100, 100);
+   image(imgs, 200, 900, 100, 100);
+   image(imgs, 300, 900, 100, 100);
+   image(imgs, 400, 900, 100, 100);
+    image(imgs,500,800,100,100)
+    image(imgs,700,800,100,100)
+    image(imgs,800,800,100,100)
+    image(imgs,900,800,100,100)
+    image(imgs,1000,800,100,100)
+    image(imgs,1100,800,100,100)
+ 
+  } 
